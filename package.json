@@ -1,0 +1,47 @@
+{
+  "name": "manga-reader-template",
+  "version": "0.2.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@mdx-js/loader": "^3.1.1",
+    "@mdx-js/react": "^3.1.1",
+    "@next/third-parties": "^15.5.3",
+    "fetch-mcp": "^0.0.5",
+    "gray-matter": "^4.0.3",
+    "https-proxy-agent": "^7.0.6",
+    "js-yaml": "^4.1.0",
+    "lucide-react": "^0.544.0",
+    "marked": "^16.3.0",
+    "next": "15.3.2",
+    "next-mdx-remote": "^5.0.0",
+    "playwright": "^1.55.0",
+    "puppeteer": "^24.20.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "rehype-highlight": "^7.0.2",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.21",
+    "cssnano": "^7.1.1",
+    "cssnano-preset-advanced": "^7.0.9",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.2",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

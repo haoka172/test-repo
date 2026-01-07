@@ -1,0 +1,25 @@
+# 现代浏览器目标配置 - 减少不必要的polyfills
+# 这个配置将显著减少JavaScript包大小，提高性能
+
+# 基本覆盖率和版本要求
+> 0.5%
+last 2 versions
+not dead
+not ie 11
+
+# 明确的现代浏览器版本 - 支持ES2020+特性
+Chrome >= 80
+Firefox >= 72
+Safari >= 13.1
+Edge >= 80
+
+# 移动端现代版本
+iOS >= 13.4
+Android >= 80
+
+# 排除旧版浏览器以减少polyfills
+not Chrome < 80
+not Firefox < 72
+not Safari < 13.1
+not iOS < 13.4
+not Android < 80

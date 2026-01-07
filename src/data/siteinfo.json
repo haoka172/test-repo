@@ -1,0 +1,255 @@
+{
+  "_template": {
+    "version": "4.3.3",
+    "lastUpdated": "2026-01-04T16:26:55.299541"
+  },
+  "globalVariables": {
+    "mangaTitle": "jack of all trades party of none",
+    "mangaTitleLower": "jack of all trades party of none",
+    "author": "KISARAGI Yuri, TOGAMI Itsuki",
+    "baseUrl": "https://jackofalltradespartyofnone.art",
+    "siteName": "jack of all trades party of none Manga - Read Online Free",
+    "contactEmail": "contact@jackofalltradespartyofnone.art",
+    "googleAnalyticsId": "G-9YXLGVESHQ",
+    "heroImage": "https://manga.xtdz.top/jack-of-all-trades-party-of-none/cover.jpg",
+    "logoImg": "/images/logo.png"
+  },
+  "colorScheme": {
+    "primary": "#dd5956",
+    "secondary": "#ebb86b",
+    "background": {
+      "light": "#fffcf8",
+      "lightSecondary": "#fff7f0",
+      "dark": "#1a1412",
+      "darkSecondary": "#2a1f1c"
+    },
+    "text": {
+      "light": "#2d1f1e",
+      "lightSecondary": "#5a4340",
+      "dark": "#faf8f6",
+      "darkSecondary": "#d9d0ca"
+    }
+  },
+  "features": {
+    "blog": {
+      "enabled": false,
+      "showInNavigation": false,
+      "showInSitemap": false,
+      "title": "{mangaTitle} Manga Blog",
+      "description": "Explore the worlds of {mangaTitle} manga through in-depth analysis, character guides, and industry insights.",
+      "baseUrl": "{baseUrl}/blog",
+      "postsPerPage": 10,
+      "author": {
+        "name": "{mangaTitle} Manga",
+        "email": "{contactEmail}"
+      },
+      "seo": {
+        "keywords": [
+          "{mangaTitleLower}",
+          "{mangaTitleLower} manga",
+          "manga review",
+          "anime news"
+        ],
+        "ogImage": "{heroImage}"
+      }
+    }
+  },
+  "title": "{mangaTitle} Manga",
+  "headerLogo": "{mangaTitle} manga",
+  "hero": {
+    "title": "{mangaTitle} Manga",
+    "description": "Jack of all trades party of none is a Japanese manga series written by Itsuki Togami and illustrated by Yonezou. Originally a web novel on Shōsetsuka ni Narō since February 2021, the manga adaptation began serialization in Kodansha's Suiyōbi no Sirius in October 2021, with 17 volumes released as of December 2025.\n\nOrun Dula, a versatile adventurer who switched from swordsman to enchanter for his party's needs, is suddenly expelled by the Hero Party for being a \"jack of all trades, master of none.\" Branded as useless despite his adaptability, Orun returns to solo adventuring as a swordsman. However, his time mastering multiple skills wasn't wasted—his unique ability to quickly learn and combine various abilities transforms him into an unconventional powerhouse. What his former party saw as weakness becomes his greatest strength as he embarks on a journey to prove that being a jack of all trades can lead to becoming a master of all.\n\nRead jack of all trades party of none manga online for free. Experience the latest chapters created by Itsuki Togami with high-quality images on <a href=\"{baseUrl}\">{headerLogo}</a>.",
+    "coverImage": "{heroImage}"
+  },
+  "callout": {
+    "title": "Read All {mangaTitle} Chapters Online Free",
+    "description": "Read jack of all trades party of none manga online for free. The latest jack of all trades party of none manga chapters translated with high-quality images on {baseUrl}.",
+    "buttons": {
+      "startText": "Start Reading Chapter 1",
+      "latestText": "Read Latest Chapter"
+    },
+    "stats": {
+      "label": "POPULAR MANGA",
+      "line": "17 Volumes | Anime Jan 2026 | Free to Read"
+    }
+  },
+  "chapterPage": {
+    "mangaIntroduction": "{mangaTitle} is an exceptional manga series masterfully crafted by {author}. This extraordinary series has captivated readers worldwide with its unique storytelling and brilliant character development.",
+    "callToAction": "Read {mangaTitle} Chapter {chapterId} and discover why this series has become one of the most beloved shōjo manga of our time. Don't miss out on the latest developments in this touching {mangaTitle} story! Experience the high-quality {mangaTitle} chapter translation and crystal-clear images exclusively on {baseUrl}."
+  },
+  "chapterList": {
+    "title": "Chapter List",
+    "subtitleTemplate": "{count} chapters available",
+    "cta": {
+      "readNowText": "Read Now!",
+      "readNowPathTemplate": "/chapters/{id}"
+    },
+    "sortDefault": "latest",
+    "newLabelCount": 3
+  },
+  "routing": {
+    "chapterPathTemplate": "/chapters/{id}",
+    "homeNavText": "All Chapters"
+  },
+  "navigation": {
+    "desktopShowTextLogo": true
+  },
+  "chapterData": {
+    "useAutoScan": true,
+    "supportedFormats": [
+      ".md"
+    ],
+    "excludePatterns": [
+      "template.md",
+      "README.md"
+    ]
+  },
+  "chapterTemplates": {
+    "titleTemplate": "{headerLogo} Chapter {chapterId}",
+    "descriptionTemplate": "Read the latest chapter of {headerLogo} online for free. Experience the thrilling world of {mangaTitle} created by {author}. High-quality images and latest chapters updated daily.",
+    "keywordsTemplate": [
+      "{mangaTitleLower}",
+      "{mangaTitleLower} chapter {chapterId}",
+      "{mangaTitleLower} manga",
+      "{mangaTitleLower} online",
+      "read {mangaTitleLower} free",
+      "{mangaTitleLower} latest chapter"
+    ],
+    "contentTemplate": "**{mangaTitle} Chapter {chapterId}**\n\n{heroDescription}\n\nRead the latest chapter of {mangaTitle} online for free with high-quality images on {baseUrl}.",
+    "useGlobalVariables": true
+  },
+  "author": "{author}",
+  "genre": [
+    "Action",
+    "Adventure",
+    "Ecchi",
+    "Fantasy",
+    "Harem",
+    "Shounen"
+  ],
+  "seo": {
+    "pageTitle": "Read {mangaTitle} Manga Online",
+    "pageDescription": "Read the latest {mangaTitle} manga chapters translated with high-quality images on {baseUrl}.",
+    "keywords": "{mangaTitleLower}, {mangaTitleLower} manga, {mangaTitleLower} chapter, {mangaTitleLower} online, read {mangaTitleLower} free, {mangaTitleLower} latest chapter",
+    "baseUrl": "{baseUrl}",
+    "siteName": "{siteName}",
+    "logoImage": "/images/{mangaTitleLower}/logo.png",
+    "mainHeading": "{mangaTitle} Manga — Read Latest Chapters Online",
+    "globalPhenomenonText": "Read {mangaTitle} manga online for free. The latest {mangaTitle} chapters by {author} translated with high-quality images.",
+    "chaptersPage": {
+      "title": "All {mangaTitle} manga Chapters",
+      "description": "Browse and read all chapters of {mangaTitle} with high-quality images and fast loading.",
+      "seoContent": {
+        "section1": {
+          "title": "Complete {mangaTitle} Chapter Collection",
+          "content": "Dive into the complete world of <a href=\"{baseUrl}\" class=\"text-primary hover:text-primary/80\">{mangaTitle}</a>, the manga series by {author}. This collection features every available chapter that has captivated readers worldwide. Follow the incredible journey through this compelling story. Start your adventure from <a href=\"{firstChapterUrl}\" class=\"text-primary hover:text-primary/80\">{mangaTitle} Chapter {firstChapter}</a> or jump to the latest <a href=\"{latestChapterUrl}\" class=\"text-primary hover:text-primary/80\">Chapter {latestChapter}</a> to explore the complete {mangaTitle} chapter list."
+        },
+        "section2": {
+          "title": "Why Read {mangaTitle} Online",
+          "content": "Experience {mangaTitle} with high-quality scans and fast loading speeds on our platform. Each {mangaTitle} chapter is carefully optimized for the best reading experience across all devices, whether you're starting fresh with <a href=\"{firstChapterUrl}\" class=\"text-primary hover:text-primary/80\">Chapter {firstChapter}</a> or catching up to the latest <a href=\"{latestChapterUrl}\" class=\"text-primary hover:text-primary/80\">Chapter {latestChapter}</a> releases. Our {mangaTitle} manga collection is updated regularly to ensure you never miss the newest developments. Browse our complete <a href=\"{baseUrl}/chapters\" class=\"text-primary hover:text-primary/80\">{mangaTitle} all chapters</a> directory for easy navigation through the entire series."
+        }
+      },
+      "features": [
+        "High-quality {mangaTitle} chapter scans",
+        "Fast loading speeds",
+        "Mobile-optimized reading",
+        "Regular manga updates",
+        "Easy chapter navigation",
+        "Bookmark functionality",
+        "Dark/Light mode support",
+        "Free to read"
+      ]
+    }
+  },
+  "whatSection": {
+    "title": "What Makes {mangaTitle} an Exceptional Reading Experience",
+    "subtitle": "Discover why {mangaTitle} has become a beloved manga series",
+    "items": [
+      {
+        "title": "Unique Underdog Story",
+        "description": "Jack of all trades party of none delivers a refreshing take on the fantasy genre. Follow Orun's journey from being dismissed as a \"master of none\" to discovering that versatility is his ultimate strength. The jack of all trades party of none manga showcases how adaptability and diverse skills can surpass narrow specialization.",
+        "image": "https://manga.xtdz.top/jack-of-all-trades-party-of-none/manga-features-1.jpg",
+        "alt": "{mangaTitle} Story",
+        "imagePosition": "left",
+        "button": {
+          "text": "Start Reading",
+          "url": "/chapters/1"
+        }
+      },
+      {
+        "title": "Strategic Combat System",
+        "description": "Experience thrilling battles where jack of all trades party of none shines through innovative skill combinations. Orun's ability to blend swordsman techniques with enchanter magic creates unique combat strategies that keep every fight unpredictable and exciting in this jack of all trades party of none manga.",
+        "image": "https://manga.xtdz.top/jack-of-all-trades-party-of-none/manga-features-2.jpg",
+        "alt": "{mangaTitle} Combat",
+        "imagePosition": "right",
+        "button": {
+          "text": "Explore Chapters",
+          "url": "/chapters"
+        }
+      },
+      {
+        "title": "Anime Adaptation Coming",
+        "description": "Read jack of all trades party of none manga before the anime premieres in January 2026! With 17 volumes of content and an upcoming anime by animation studio42, now is the perfect time to dive into this jack of all trades party of none series and join the growing fanbase.",
+        "image": "https://manga.xtdz.top/jack-of-all-trades-party-of-none/manga-features-3.jpeg",
+        "alt": "{mangaTitle} Anime",
+        "imagePosition": "left",
+        "button": {
+          "text": "Read Latest",
+          "url": "/chapters"
+        }
+      }
+    ]
+  },
+  "youtubeSection": {
+    "title": "Watch the {mangaTitle} Official Trailer",
+    "subtitle": "Experience the incredible world of {mangaTitle}",
+    "embedCode": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/dLDimMasKBM?si=OpgtZ35KfyvVUOGc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "videoTitle": "Jack of All Trades Party of None Official Anime Trailer",
+    "description": "Dive deep into the jack of all trades party of none universe with exclusive video content."
+  },
+  "faq": [
+    {
+      "question": "What is jack of all trades party of none about?",
+      "answer": "Jack of all trades party of none is a fantasy manga series written by Itsuki Togami and illustrated by Yonezou. The story follows Orun Dula, an adventurer expelled from the Hero Party for being a \"jack of all trades, master of none.\" The jack of all trades party of none manga explores how his versatility becomes his greatest strength as he embarks on a solo journey to become a master of all skills."
+    },
+    {
+      "question": "Where can I read jack of all trades party of none manga online for free?",
+      "answer": "You can read jack of all trades party of none manga online for free on our website. We provide high-quality jack of all trades party of none manga chapters with fast loading times, mobile optimization, and regular updates to ensure you never miss the latest developments in this exciting series."
+    },
+    {
+      "question": "How many volumes of jack of all trades party of none are there?",
+      "answer": "As of December 2025, jack of all trades party of none has 17 manga volumes published by Kodansha. The series began serialization in October 2021 and continues to release new jack of all trades party of none manga chapters regularly."
+    },
+    {
+      "question": "When does the jack of all trades party of none anime come out?",
+      "answer": "The jack of all trades party of none anime adaptation by animation studio42 premieres on January 4, 2026, on Tokyo MX and other networks. Early streaming begins January 1, 2026. Read jack of all trades party of none manga now to experience the story before the anime!"
+    },
+    {
+      "question": "Is jack of all trades party of none worth reading?",
+      "answer": "Absolutely! Jack of all trades party of none offers a unique take on the fantasy genre with its underdog protagonist and innovative skill system. With over 3.7 million copies in circulation and an upcoming anime adaptation, the jack of all trades party of none manga has proven its popularity among fans worldwide."
+    },
+    {
+      "question": "Can I read jack of all trades party of none manga chapter updates on mobile?",
+      "answer": "Yes! Our website is fully optimized for reading jack of all trades party of none manga on smartphones and tablets. Enjoy high-quality jack of all trades party of none manga chapters with dark/light mode, smooth navigation, and fast loading on any device."
+    },
+    {
+      "question": "Who are the main characters in jack of all trades party of none?",
+      "answer": "The jack of all trades party of none manga centers on Orun Dula, the expelled Hero Party member who becomes a versatile solo adventurer. Other key characters include Sophia Clodel, Selma Clodel, and members of Orun's former party who underestimated his potential."
+    },
+    {
+      "question": "What makes jack of all trades party of none different from other isekai manga?",
+      "answer": "Jack of all trades party of none stands out by focusing on skill versatility rather than overpowered abilities. The jack of all trades party of none manga showcases strategic combat where combining multiple skills creates unique advantages, offering a refreshing alternative to typical power fantasy stories."
+    }
+  ],
+  "startReadingPath": "/chapters/1",
+  "latestChapterPath": "/chapters/1",
+  "totalChapters": null,
+  "status": "Ongoing",
+  "coverImage": "{heroImage}",
+  "releaseYear": "2021",
+  "baseUrl": "{baseUrl}",
+  "siteName": "{siteName}",
+  "advertising": {
+    "enabled": false
+  }
+}

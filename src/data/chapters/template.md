@@ -1,0 +1,28 @@
+---
+title: "{headerLogo} Chapter {chapterId}"
+keywords:
+  - "{mangaTitleLower}"
+  - "{mangaTitleLower} chapter {chapterId}"
+  - "{mangaTitleLower} manga"
+  - "{mangaTitleLower} online"
+  - "read {mangaTitleLower} free"
+  - "{mangaTitleLower} latest chapter"
+imagePaths:
+  # 图片路径将由自动化脚本填写
+  # 格式: - 'https://example.com/image1.jpg'
+  # 格式: - 'https://example.com/image2.jpg'
+---
+
+**{mangaTitle} Chapter {chapterId}**
+
+Read the latest chapter of <a href="{baseUrl}">{headerLogo}</a> online for free. Experience the thrilling world of {mangaTitle} created by {author}. High-quality images and latest chapters updated daily on <a href="{baseUrl}">{headerLogo}</a>.
+
+## Chapter Summary
+
+This chapter continues the incredible journey in {mangaTitle}, showcasing the intense competition and character development that has made this series a global phenomenon. Follow the story as it unfolds with stunning artwork and compelling narrative.
+
+## About {mangaTitle}
+
+{mangaTitle} is a revolutionary {genre} manga series that has captivated millions of readers worldwide. Created by {author}, this series combines exceptional storytelling with breathtaking artwork to deliver an unforgettable reading experience.
+
+**<a href="{baseUrl}/chapters/{chapterId}">Read {mangaTitle} Chapter {chapterId}</a>** and discover why this series has become one of the most popular manga of our time. Don't miss out on the latest developments in this epic story!

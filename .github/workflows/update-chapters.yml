@@ -1,0 +1,214 @@
+name: Update Blue Lock Chapters
+
+on:
+  schedule:
+    # 每天 UTC 时间 02:00 运行 (北京时间 10:00)
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      start_chapter:
+        description: '起始章节号 (留空自动从当前最大章节+1开始)'
+        required: false
+        default: ''
+      end_chapter:
+        description: '结束章节号 (留空自动采集到最新章节)'
+        required: false
+        default: ''
+      batch_size:
+        description: '批次大小'
+        required: false
+        default: '50'
+
+jobs:
+  update-chapters:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Install Playwright browsers
+      run: npx playwright install chromium
+      
+    - name: Check for new chapters
+      id: check_updates
+      run: |
+        # 检查是否有新章节
+        node -e "
+        const fs = require('fs');
+        const path = require('path');
+        
+        // 读取当前数据
+        const dataPath = path.join(__dirname, 'src/data/chapterData.ts');
+        if (fs.existsSync(dataPath)) {
+          const content = fs.readFileSync(dataPath, 'utf8');
+          const availableMatch = content.match(/availableChapters: number\[\] = \[(.*?)\]/);
+          if (availableMatch) {
+            const chapters = availableMatch[1].split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
+            const maxChapter = Math.max(...chapters);
+            console.log('CURRENT_MAX=' + maxChapter);
+          } else {
+            console.log('CURRENT_MAX=0');
+          }
+        } else {
+          console.log('CURRENT_MAX=0');
+        }
+        " >> $GITHUB_OUTPUT
+        
+    - name: Run incremental update (preserve existing data)
+      if: github.event_name == 'schedule'
+      run: |
+        echo "Running incremental update - checking for new chapters"
+        # 创建备份目录和数据备份
+        mkdir -p src/data/backups
+        cp src/data/chapterData.ts "src/data/backups/chapterData-before-update-$(date -u +%Y-%m-%dT%H-%M-%S-%3NZ).ts" || true
+        
+        # 检查最新章节
+        CURRENT_MAX=$(node -e "
+        const fs = require('fs');
+        if (fs.existsSync('src/data/chapterData.ts')) {
+          const content = fs.readFileSync('src/data/chapterData.ts', 'utf8');
+          const matches = content.match(/availableChapters: number\[\] = \[(.*?)\]/);
+          if (matches) {
+            const chapters = matches[1].split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
+            console.log(Math.max(...chapters));
+          } else { console.log(0); }
+        } else { console.log(0); }
+        ")
+        
+        echo "Current max chapter: $CURRENT_MAX"
+        # 抓取新章节 (从最大章节号+1开始，自动检测到最新)
+        NEW_START=$((CURRENT_MAX + 1))
+        echo "Checking for new chapters from: $NEW_START (auto-detect latest)"
+        
+        # 运行抓取器（自动检测最新章节，不设置结束章节）
+        node scripts/fast-scraper.js $NEW_START
+        
+    - name: Run manual update
+      if: github.event_name == 'workflow_dispatch'
+      run: |
+        # 自动检测当前最大章节数
+        CURRENT_MAX=$(node -e "
+        const fs = require('fs');
+        if (fs.existsSync('src/data/chapterData.ts')) {
+          const content = fs.readFileSync('src/data/chapterData.ts', 'utf8');
+          const matches = content.match(/availableChapters: number\\[\\] = \\[(.*?)\\]/);
+          if (matches) {
+            const chapters = matches[1].split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
+            console.log(Math.max(...chapters));
+          } else { console.log(0); }
+        } else { console.log(0); }
+        ")
+        
+        echo "当前最大章节: $CURRENT_MAX"
+        
+        # 如果用户指定了起始章节，使用用户设置；否则自动从下一章开始
+        if [ -n "${{ github.event.inputs.start_chapter }}" ] && [ "${{ github.event.inputs.start_chapter }}" != "" ]; then
+          START="${{ github.event.inputs.start_chapter }}"
+          echo "使用用户指定起始章节: $START"
+        else
+          START=$((CURRENT_MAX + 1))
+          echo "自动设置起始章节: $START (当前最大章节 + 1)"
+        fi
+        
+        # 如果用户指定了结束章节，使用用户设置；否则自动检测到最新章节
+        if [ -n "${{ github.event.inputs.end_chapter }}" ] && [ "${{ github.event.inputs.end_chapter }}" != "" ]; then
+          END="${{ github.event.inputs.end_chapter }}"
+          BATCH="${{ github.event.inputs.batch_size }}"
+          if [ -z "$BATCH" ]; then
+            BATCH=50
+          fi
+          echo "使用用户指定结束章节: $END (批次大小: $BATCH)"
+          node scripts/fast-scraper.js $START $END $BATCH
+        else
+          echo "自动检测采集从章节 $START 到最新章节"
+          node scripts/fast-scraper.js $START
+        fi
+        
+    - name: Generate static pages
+      run: |
+        echo "Generating Blue Lock static pages..."
+        node scripts/generate-pages.js
+        
+    - name: Check for changes
+      id: check_changes
+      run: |
+        if git diff --quiet src/data/chapterData.ts src/app/blue-lock-chapter-*; then
+          echo "HAS_CHANGES=false" >> $GITHUB_OUTPUT
+          echo "No changes detected"
+        else
+          echo "HAS_CHANGES=true" >> $GITHUB_OUTPUT
+          echo "Changes detected in chapter data or pages"
+        fi
+        
+    - name: Commit and push changes
+      if: steps.check_changes.outputs.HAS_CHANGES == 'true'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # 获取更新信息
+        TOTAL_CHAPTERS=$(grep "总章节数:" src/data/chapterData.ts | sed 's/.*总章节数: //')
+        LAST_UPDATE=$(grep "最后更新:" src/data/chapterData.ts | sed 's/.*最后更新: //')
+        
+        git add src/data/chapterData.ts
+        git add src/data/scraped-data.json || true
+        git add src/app/blue-lock-chapter-*/page.tsx || true
+        
+        git commit -m "🔄 Update Blue Lock chapters and pages
+        
+        - 总章节数: $TOTAL_CHAPTERS
+        - 更新时间: $LAST_UPDATE
+        - 数据源: ToonClash
+        
+        Auto-updated by GitHub Actions"
+        
+        git push origin main
+        
+    - name: Create summary
+      if: always()
+      run: |
+        echo "## 📊 章节更新摘要" >> $GITHUB_STEP_SUMMARY
+        
+        if [ -f "src/data/chapterData.ts" ]; then
+          TOTAL_CHAPTERS=$(grep "总章节数:" src/data/chapterData.ts | sed 's/.*总章节数: //' || echo "未知")
+          LAST_UPDATE=$(grep "最后更新:" src/data/chapterData.ts | sed 's/.*最后更新: //' || echo "未知")
+          
+          echo "- 📚 总章节数: $TOTAL_CHAPTERS" >> $GITHUB_STEP_SUMMARY
+          echo "- 🕒 最后更新: $LAST_UPDATE" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔗 数据源: ToonClash" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.check_changes.outputs.HAS_CHANGES }}" == "true" ]; then
+            echo "- ✅ 状态: 数据已更新" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ℹ️ 状态: 无新章节" >> $GITHUB_STEP_SUMMARY
+          fi
+        else
+          echo "- ❌ 错误: 数据文件未找到" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+    - name: Upload artifacts on failure
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: debug-logs
+        path: |
+          src/data/scraped-data.json
+          src/data/backups/
+        retention-days: 7
